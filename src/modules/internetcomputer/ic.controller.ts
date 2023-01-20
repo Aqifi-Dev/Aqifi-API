@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { MintNftDto } from './mint-nft.dto';
+import { Principal } from '@dfinity/principal';
+import { General, MintNftDto } from './mint-nft.dto';
 import { exec, spawn } from 'child_process';
 export const lg = console.log;
 
@@ -17,10 +19,11 @@ export class IcController {
         lg('stderr:', stderr);
       },
     );
+    return 'OK:test';
   }
   @Post('/once')
-  once(@Body() body: MintNftDto) {
-    lg('once');
+  once(@Body() body: General) {
+    lg('once', body, ', content:', body.content);
     exec(
       '../dip721-nft-container/bashscript.sh once',
       (err, stdout, stderr) => {
@@ -32,8 +35,8 @@ export class IcController {
   }
 
   @Post('/startDfx')
-  startDfx(@Body() body: MintNftDto) {
-    lg('startDfx');
+  startDfx(@Body() body: General) {
+    lg('startDfx', body, ', content:', body.content);
     exec(
       '../dip721-nft-container/bashscript.sh startDfx',
       (err, stdout, stderr) => {
@@ -44,8 +47,8 @@ export class IcController {
     );
   }
   @Post('/deployHello')
-  deployHello(@Body() body: MintNftDto) {
-    lg('deployHello');
+  deployHello(@Body() body: General) {
+    lg('deployHello', body, ', content:', body.content);
     exec(
       '../dip721-nft-container/bashscript.sh deployHello',
       (err, stdout, stderr) => {
@@ -56,8 +59,8 @@ export class IcController {
     );
   }
   @Post('/deployDip721')
-  deployDip721(@Body() body: MintNftDto) {
-    lg('deployDip721');
+  deployDip721(@Body() body: General) {
+    lg('deployDip721', body, ', content:', body.content);
     exec(
       '../dip721-nft-container/bashscript.sh deployDip721',
       (err, stdout, stderr) => {
@@ -94,9 +97,10 @@ export class IcController {
   //POST /ic { "content": "hi there" }
   @Post('/mintNFT')
   mintNFT(@Body() body: MintNftDto) {
-    lg('mintNFT d6. body:', body, ', content:', body.content);
+    lg('mintNFT d6. body:', body, ', content:', body.content, ', textone:', body.textone);
+    //const nft_to_principal = Principal.fromText(body.textone);
     exec(
-      '../dip721-nft-container/bashscript.sh mintNFT ' + body.content,
+      '../dip721-nft-container/bashscript.sh mintNFT ' + body.content + ' ' + body.textone,
       (err, stdout, stderr) => {
         lg('err:', err);
         lg('stdout:', stdout);
@@ -107,9 +111,9 @@ export class IcController {
   //POST /ic { "content": "hi there" }
   @Post('/mintNftforall')
   mintNftforall(@Body() body: MintNftDto) {
-    lg('mintDip721forall d6a. body:', body, ', content:', body.content);
+    lg('mintDip721forall d6a. body:', body, ', content:', body.content, ', textone:', body.textone);
     exec(
-      '../dip721-nft-container/bashscript.sh mintDip721forall ' + body.content,
+      '../dip721-nft-container/bashscript.sh mintDip721forall ' + body.content + ' ' + body.textone,
       (err, stdout, stderr) => {
         lg('err:', err);
         lg('stdout:', stdout);
@@ -119,7 +123,7 @@ export class IcController {
   }
 
   @Post('/dfxstop')
-  dfxstop(@Body() body: MintNftDto) {
+  dfxstop(@Body() body: General) {
     lg('mintDip721forall d6a. body:', body, ', content:', body.content);
     exec(
       '../dip721-nft-container/bashscript.sh dfxstop',
