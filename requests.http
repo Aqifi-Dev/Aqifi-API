@@ -1,0 +1,108 @@
+### Test remote
+GET 142.93.217.249:3000/ic/test
+
+### test
+GET http://localhost:3000/ic/test
+
+### once
+POST http://localhost:3000/ic/once
+content-type: application/json
+
+{
+  "content": "once"
+}
+
+### cargo check
+POST http://localhost:3000/ic/cargocheck
+content-type: application/json
+
+{
+  "content": "cargocheck"
+}
+
+### use dfx Admin
+POST http://localhost:3000/ic/useDfxAdmin
+content-type: application/json
+
+{
+  "content": "useDfxAdmin"
+}
+
+### start dfx
+POST http://localhost:3000/ic/startDfx
+content-type: application/json
+
+{
+  "content": "startDfx"
+}
+
+### deploy hello
+POST http://localhost:3000/ic/deployHello
+content-type: application/json
+
+{
+  "content": "deployHello"
+}
+
+### deploy dip721
+POST http://localhost:3000/ic/deployDip721
+content-type: application/json
+
+{
+  "content": "deployDip721"
+}
+
+### call simple dip721 canister functions
+GET http://localhost:3000/ic/callSimpleFunctions
+
+### call inter-canister function
+GET http://localhost:3000/ic/callInterCanister
+
+### Make a new message ... make sure there is an EMPTY LINE below!!! Confirm initial test result: "HTTP/1.1 201 Created"
+## test validation by: nothing, "content": 123, "content": null, "xyz": "hi"
+POST http://localhost:3000/ic/mintNFT
+content-type: application/json
+
+{
+  "content": "nft_name:King-Kong",
+  "textone": "q4kbr-uwa7y-ogr5u-57lwy-27ce5-2myrf-sqdzy-iqr65-jkcnf-3fadt-dqe"
+}
+
+### Make NFT from anybody
+POST http://localhost:3000/ic/mintNftforall
+content-type: application/json
+
+{
+  "content": "nft_name:Anybody",
+  "textone": "hvnpv-7tz4x-urwpp-mtaw3-75xzo-v5mwr-b43ba-qgrtn-pc4kv-zy2dg-tqe"
+}
+
+### Get metadata of NFT_id: ..."
+GET http://localhost:3000/ic/0
+
+### Get metadata of NFT_id: ..."
+GET http://localhost:3000/ic/1
+
+### List all NFTs. Confirm initial test result: "HTTP/1.1 200 OK"
+GET http://localhost:3000/ic/listNfts
+
+### stop dfx
+POST http://localhost:3000/ic/dfxstop
+content-type: application/json
+
+{
+  "content": "dfxstop"
+}
+
+
+### Get Google
+GET www.google.com 
+
+### Get test1
+GET https://reqbin.com/echo
+
+### Get metadata of NFT_id: ..."
+GET https://whale-app-7hsxo.ondigitalocean.app
+
+### Get metadata of NFT_id: ..."
+GET https://whale-app-7hsxo.ondigitalocean.app/api/circulating-supply

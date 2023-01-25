@@ -34,6 +34,32 @@ export class IcController {
     );
   }
 
+  @Post('/cargocheck')
+  cargocheck(@Body() body: General) {
+    lg('cargocheck', body, ', content:', body.content);
+    exec(
+      '../dip721-nft-container/bashscript.sh cargocheck',
+      (err, stdout, stderr) => {
+        lg('err:', err);
+        lg('stdout:', stdout);
+        lg('stderr:', stderr);
+      },
+    );
+  }
+
+  @Post('/useDfxAdmin')
+  useDfxAdmin(@Body() body: General) {
+    lg('useDfxAdmin', body, ', content:', body.content);
+    exec(
+      '../dip721-nft-container/bashscript.sh useDfxAdmin',
+      (err, stdout, stderr) => {
+        lg('err:', err);
+        lg('stdout:', stdout);
+        lg('stderr:', stderr);
+      },
+    );
+  }
+
   @Post('/startDfx')
   startDfx(@Body() body: General) {
     lg('startDfx', body, ', content:', body.content);

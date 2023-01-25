@@ -40,6 +40,7 @@ $ docker-compose up
 ```
 
 ## ApiKey
+
 stony
 
 ## Running the app
@@ -67,6 +68,11 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Test API
+
+Install VS Code extension "REST Client" by Huachao Mao
+Click on different "send request" texts inside requests.http to trigger API requests
 
 ## Support
 
